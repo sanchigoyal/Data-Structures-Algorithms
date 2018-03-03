@@ -1,0 +1,93 @@
+package com.sanchi.tutorial.algorithms;
+
+/**
+ * Stack with array as data structure.
+ *
+ * Operations - 
+ * 	a) push()
+ * 	b) pop()
+ *  c) peek()
+ *  d) isEmpty()
+ *
+ * @author Sanchi
+ *
+ */
+public class Stack<TYPE> {
+
+	private int top;
+	private TYPE[] elements;
+	
+	@SuppressWarnings("unchecked")
+	Stack(int size)
+	{
+		this.top = -1;
+		this.elements = (TYPE[]) new Object[size];
+	}
+	
+	/**
+	 * Method to add an element to stack.
+	 * 
+	 * @param element
+	 */
+	public void push(TYPE element)
+	{
+		elements[++top] = element;
+	}
+	
+	/**
+	 * Method to return and remove the top 
+	 * element from stack.
+	 * 
+	 * @return
+	 * @throws RecordNotFoundException
+	 */
+	public TYPE pop() throws RecordNotFoundException
+	{
+		if(isEmpty())
+		{
+			throw new RecordNotFoundException("No element in stack to return");
+		}
+		
+		TYPE element = elements[top];
+		elements[top] = null;
+		top--;
+		return element;
+	}
+	
+	/**
+	 * Method to check if stack is empty.
+	 * 
+	 * @return
+	 */
+	public boolean isEmpty()
+	{
+		return top == -1?true:false;
+	}
+	
+	/**
+	 * Method to view the top element.
+	 * This doesn't remove the element.
+	 * 
+	 * @return
+	 * @throws RecordNotFoundException
+	 */
+	public TYPE peek() throws RecordNotFoundException
+	{
+		if(isEmpty())
+		{
+			throw new RecordNotFoundException("No element in stack to return");
+		}
+		
+		return elements[top];
+	}
+}
+
+class RecordNotFoundException extends Exception
+{
+	private static final long serialVersionUID = 1L;
+
+	public RecordNotFoundException(String message) {
+		
+		super(message);
+	}
+}
