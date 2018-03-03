@@ -1,0 +1,101 @@
+package com.sanchi.tutorial.algorithms;
+
+/**
+ * Stack with LinkedList as data structure.
+ *
+ * Operations - 
+ * 	a) push()
+ * 	b) pop()
+ *  c) peek()
+ *  d) isEmpty()
+ *
+ * @author Sanchi
+ *
+ */
+public class StackWithLinkedList<TYPE> {
+	
+	private class Node
+	{
+		private TYPE value;
+		Node next;
+		
+		Node(TYPE value, Node next)
+		{
+			this.value = value;
+			this.next = next;
+		}
+	}
+	
+	private Node top;
+	
+	public StackWithLinkedList() {
+		top = null;
+	}
+	
+	/**
+	 * Method to add an element to stack.
+	 * 
+	 * @param element
+	 */
+	public void push(TYPE element)
+	{
+		Node newElement = null;
+		if(top == null)
+		{
+			newElement = new Node(element, null);
+		}
+		else
+		{
+			newElement = new Node(element, top);
+		}
+		
+		top = newElement;
+	}
+	
+	/**
+	 * Method to return and remove the top 
+	 * element from stack.
+	 * 
+	 * @return
+	 * @throws RecordNotFoundException
+	 */
+	public TYPE pop() throws RecordNotFoundException
+	{
+		if(isEmpty())
+		{
+			throw new RecordNotFoundException("No element in stack to return");
+		}
+		
+		TYPE element = top.value;
+		top = top.next;
+		
+		return element;
+	}
+	
+	/**
+	 * Method to check if stack is empty.
+	 * 
+	 * @return
+	 */
+	public boolean isEmpty()
+	{
+		return top == null?true:false;
+	}
+	
+	/**
+	 * Method to view the top element.
+	 * This doesn't remove the element.
+	 * 
+	 * @return
+	 * @throws RecordNotFoundException
+	 */
+	public TYPE peek() throws RecordNotFoundException
+	{
+		if(isEmpty())
+		{
+			throw new RecordNotFoundException("No element in stack to return");
+		}
+		
+		return top.value;
+	}
+}
