@@ -22,6 +22,7 @@ public class FindByBinarySearch {
 	
 	/**
 	 * Method to search using binary search algorithm.
+	 * Binary search has time complexity of O(log n)
 	 * 
 	 * @param elements
 	 * @param element
